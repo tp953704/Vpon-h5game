@@ -1,0 +1,43 @@
+@import './reset.scss';
+
+html,body{
+    width:100%;
+}
+
+
+
+.game-wrapper{
+    margin: 0 auto;
+    height: calc(100vw*5/13);
+    .game-container{
+        position: relative;
+        width: 100%;
+        height: inherit;
+        .game-top-size{
+            height: calc(100vw*5/13);
+        }
+        .game-bottom-size{
+            height: calc(100vw*4/13);
+        }
+        .game-item{
+            width: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        #game-ui{
+            z-index: 1;
+            top:calc(100vw*1/13);
+            
+        }
+        #game-bg{
+            z-index: 0;
+            top:0;
+        }
+    }
+}
+    
+
+
