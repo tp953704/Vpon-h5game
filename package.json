@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch"
+    "dev": "rimraf dist/* && webpack --mode development --watch",
+    "build": "rimraf dist/* && webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.4",
+    "rimraf": "^3.0.2",
     "sass": "^1.32.12",
     "sass-loader": "^11.1.0",
     "style-loader": "^2.0.0",
