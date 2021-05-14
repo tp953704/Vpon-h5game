@@ -4,7 +4,8 @@
 import {gameCanvas,ui_width,ui_heigth,gameBgCanvas,bg_width,bg_height} from './init'
 // 背景初始化與更新
 import {bgUpdate} from './background'
-import {updatePlayer} from './player'
+// 玩家
+import {updatePlayer,MoveUp,MoveDown} from './player'
 
 import {drawObstacleToMap,obstacleSpeed} from './obstacle/gameMaps';
 
@@ -14,30 +15,70 @@ let currentTimer = 0;
 //是否暫停
 let isLooping = true;
 
+// 暫停幾秒
+let pauseTimer = 0;
+
+
+// 暫停時間
+let pauseTimeFn = ()=>{}
+
 // 無限迴圈
 export function Looping(){
+    
+    // 是否全體元素正常運作
     if(isLooping){
-        // 遊戲進程加一
-        currentTimer+=2;
         // 清空畫布
         gameCanvas.clearRect(0,0,ui_width,ui_heigth)
+        // 遊戲進程加一
+        currentTimer+=2;
         // 背景渲染更新
         bgUpdate(bg_width,bg_height,gameBgCanvas,currentTimer)
-      
+        
         // 更新玩家資訊
         updatePlayer(currentTimer)
+        // 新圖畫在舊圖下
+        gameCanvas.globalCompositeOperation = "destination-over"
           // 渲染 障礙物
         // 希望障礙物慢10倍
         drawObstacleToMap(Math.floor(currentTimer*obstacleSpeed))
+    }else{
+        // 暫停秒數更新
+        pauseTimer++;
+        pauseTimeFn(pauseTimer)
     }
     // 持續更新觸發
     // requestAnimationFrame(Looping)
 }
-// 暫停遊戲
-export function pause(){
+// 暫停遊戲，參數為 暫停時要做的事和暫停總時間
+export function pause(pauseFn){
     isLooping = false;
+    pauseTimeFn = pauseFn
 }
 // 繼續遊戲
 export function startLoop(){
+    // 暫停秒數初始化
+    pauseTimer=0;
+    pauseTimeFn=()=>{}
     isLooping = true
 }
+
+
+
+// 在遊戲過程中，dom的監聽
+const TopBtn = document.querySelector("#topBtn")
+const BottomBtn = document.querySelector("#bottomBtn")
+const keepBtn = document.querySelector("#startLoop")
+TopBtn.addEventListener("click",()=>{
+    if(isLooping){
+        MoveUp()
+    }
+},false)
+BottomBtn.addEventListener("click",()=>{
+    if(isLooping){
+        MoveDown()
+    }
+},false)
+keepBtn.addEventListener('click',()=>{
+    
+    startLoop()
+})

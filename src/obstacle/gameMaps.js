@@ -1,5 +1,6 @@
 // 地圖 寬17個玩家的寬(0~16)  高6條小路(0~5)
 // 玩家的位置
+import {gameCanvas} from '../init'
 
 // 信箱繪製方法
 import {drawMail} from './mail'
@@ -8,8 +9,9 @@ import {drawStone} from './stone'
 
 // 障礙物數度慢十倍
 export const obstacleSpeed = 1/30
-//障礙物Array 
-// 1是mail
+
+//障礙物Array 地圖
+// 1是mail 2是tree 3是stone
 const obstacleArray = [
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
@@ -126,7 +128,10 @@ export function drawObstacleToMap(currentTimer){
         perObstacleArray.forEach((type,index)=>{
             // type === 是信封 type === 2是樹 type === 3是石頭
             if(type===1){
+                // 因為信是飄的，所以飄在最上面
+                gameCanvas.globalCompositeOperation = "source-over"
                 drawMail(i-firstIndex,index,currentTimer)
+                gameCanvas.globalCompositeOperation = "destination-over"
             }else if(type===2){
                 drawTree(i-firstIndex,index,currentTimer)
             }else if(type===3){

@@ -25,5 +25,6 @@ export function drawStone(x,y){
     const stonePosYUnit = ui_heigth/6-5;
     if(stoneImgElement.complete){
         gameCanvas.drawImage(stoneImgElement,stonePosXUnit*x,stonePosYUnit*y,stoneWidth,stoneHeight)
+        
     }
 }
