@@ -1,5 +1,7 @@
 
-
+// 背景初始化
+import {bgInit} from './background'
+import {drawMail} from './obstacle/mail'
 
 // 利用canvas ID 取得 DOM 和 cavans
 function getCanvasAndContextById(id){
@@ -13,22 +15,23 @@ function getCanvasAndContextById(id){
 }
 
 
-// 初始化
-export function init(InitCallbackFn){
-    // UICanvas // 遊戲的人物障礙物ˋ信封 畫布
-    const [gameDom,gameCanvas] = getCanvasAndContextById('game-ui')
-    // 背景Canvas // 遊戲背景 畫布
-    const [gameBgDom,gameBgCanvas] = getCanvasAndContextById('game-bg')
-    const ui_width = gameDom.width;
-    const ui_heigth = gameDom.height;
+// UICanvas // 遊戲的人物障礙物ˋ信封 畫布
+const [gameDom,gameCanvas] = getCanvasAndContextById('game-ui')
+// 背景Canvas // 遊戲背景 畫布
+const [gameBgDom,gameBgCanvas] = getCanvasAndContextById('game-bg')
+const ui_width = gameDom.width;
+const ui_heigth = gameDom.height;
 
-    // 背景畫布寬度高度
-    const bg_width = gameBgDom.width;
-    const bg_height = gameBgDom.height;
-    
-    // TODO：待優化
-    // 回條函數
-    InitCallbackFn(gameDom,gameCanvas,ui_width,ui_heigth,gameBgDom,gameBgCanvas,bg_width,bg_height)
+// 背景畫布寬度高度
+const bg_width = gameBgDom.width;
+const bg_height = gameBgDom.height;
 
-    return {gameDom,gameCanvas,ui_width,ui_heigth,gameBgDom,gameBgCanvas,bg_width,bg_height}
+// 遊戲初始化方法
+export function gameInit(){
+    // 背景渲染
+    bgInit(bg_width,bg_height,gameBgCanvas)
+    // drawMail(gameCanvas)
 }
+
+// 遊戲的所有資訊
+export {gameDom,gameCanvas,ui_width,ui_heigth,gameBgDom,gameBgCanvas,bg_width,bg_height}
