@@ -70,21 +70,21 @@ export function startLoop(){
 
 
 
-// 在遊戲過程中，dom的監聽
-const TopBtn = document.querySelector("#topBtn")
-const BottomBtn = document.querySelector("#bottomBtn")
-const keepBtn = document.querySelector("#startLoop")
-TopBtn.addEventListener("click",()=>{
-    if(isLooping){
-        MoveUp()
-    }
-},false)
-BottomBtn.addEventListener("click",()=>{
-    if(isLooping){
-        MoveDown()
-    }
-},false)
-keepBtn.addEventListener('click',()=>{
+// // 在遊戲過程中，dom的監聽
+// const TopBtn = document.querySelector("#topBtn")
+// const BottomBtn = document.querySelector("#bottomBtn")
+// const keepBtn = document.querySelector("#startLoop")
+// TopBtn.addEventListener("click",()=>{
+//     if(isLooping){
+//         MoveUp()
+//     }
+// },false)
+// BottomBtn.addEventListener("click",()=>{
+//     if(isLooping){
+//         MoveDown()
+//     }
+// },false)
+// keepBtn.addEventListener('click',()=>{
     
-    startLoop()
-})
+//     startLoop()
+// })

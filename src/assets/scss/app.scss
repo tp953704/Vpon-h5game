@@ -4,12 +4,18 @@ html,body{
     width:100%;
     height: 100%;
     background-color: #f7d986;
-    margin: auto;
+    overflow: hidden;
+    // position: relative;
 }
 
 
 
 .game-wrapper{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
     margin: 0 auto;
     height: calc(50vw);
     max-width: 992px;
@@ -59,13 +65,13 @@ html,body{
             align-items:center;
             height: 100%;
             .content__title{
-                font-size: 50px;
+                font-size: 30px;
                 color: #026269;
                 text-align: center;
                 font-weight: bolder;
             }
             .content__btn{
-                width: 20%;
+                
                 padding: 10px;
                 background-color: #aad0eb;
                 color: #602cda;
