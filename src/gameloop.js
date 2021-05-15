@@ -30,7 +30,7 @@ export function Looping(){
         // 清空畫布
         gameCanvas.clearRect(0,0,ui_width,ui_heigth)
         // 遊戲進程加一
-        currentTimer+=2;
+        currentTimer+=1;
         // 背景渲染更新
         bgUpdate(bg_width,bg_height,gameBgCanvas,currentTimer)
         
@@ -39,15 +39,15 @@ export function Looping(){
         // 新圖畫在舊圖下
         gameCanvas.globalCompositeOperation = "destination-over"
           // 渲染 障礙物
-        // 希望障礙物慢10倍
-        drawObstacleToMap(Math.floor(currentTimer*obstacleSpeed))
+        
+        drawObstacleToMap(currentTimer)
     }else{
         // 暫停秒數更新
         pauseTimer++;
         pauseTimeFn(pauseTimer)
     }
     // 持續更新觸發
-    // requestAnimationFrame(Looping)
+    requestAnimationFrame(Looping)
 }
 // 暫停遊戲，參數為 暫停時要做的事和暫停總時間
 export function pause(pauseFn){
@@ -58,7 +58,7 @@ export function pause(pauseFn){
 export function startLoop(){
     // 暫停秒數初始化
     pauseTimer=0;
-    pauseTimeFn=()=>{}
+    pauseTimeFn=null
     isLooping = true
 }
 

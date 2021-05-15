@@ -24,7 +24,7 @@ const obstacleArray = [
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
-    [0,3,0,0,0,0],
+    [2,3,0,0,0,0],
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
@@ -111,16 +111,18 @@ let lastIndex;
 
 // 障礙物繪製
 export function drawObstacleToMap(currentTimer){
+    // 希望障礙物慢obstacleSpeed倍
+    const obstacleTimer = Math.floor(currentTimer*obstacleSpeed)
     // obstacleArray的大小
     let obstacleLength = obstacleArray.length
     // 如果跑完了 不用渲染
-    if(currentTimer>obstacleLength){
+    if(obstacleTimer>obstacleLength){
         return ;
     }
     // obstacleArray在地圖的第一列
-    firstIndex = currentTimer
+    firstIndex = obstacleTimer
     // 地圖最後一列
-    lastIndex = (currentTimer+17>obstacleLength)?obstacleLength:currentTimer+17
+    lastIndex = (obstacleTimer+17>obstacleLength)?obstacleLength:obstacleTimer+17
 
     for(let i=firstIndex; i<lastIndex; i++){
         // 每一列的障礙物
@@ -135,7 +137,7 @@ export function drawObstacleToMap(currentTimer){
             }else if(type===2){
                 drawTree(i-firstIndex,index,currentTimer)
             }else if(type===3){
-                drawStone(i-firstIndex,index)
+                drawStone(i-firstIndex,index,currentTimer)
             }
         })
     }

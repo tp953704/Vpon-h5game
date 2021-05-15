@@ -1,7 +1,6 @@
 
 // 背景初始化
 import {bgInit} from './background'
-import {drawMail} from './obstacle/mail'
 
 // 利用canvas ID 取得 DOM 和 cavans
 function getCanvasAndContextById(id){

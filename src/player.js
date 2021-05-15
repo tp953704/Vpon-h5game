@@ -4,6 +4,8 @@ import {gameCanvas,ui_width,ui_heigth} from './init'
 import {pause,startLoop} from './gameloop'
 // 取得障礙物渲染狀態
 import {getObstacleStatus} from './obstacle/gameMaps'
+// 信件特效
+import {mailTouch} from './obstacle/mail'
 
 // 玩家的素材路徑
 const PlayerImgUrl = require("./assets/images/player.png")
@@ -66,9 +68,9 @@ function collapse(posXPlus){
         // 撞到信件遊戲暫停一下，信件消失
         if(collapseType>1){
             pause(PlayerJump)
-            // obstacleArray[collapseIndex][currentVertical] = 0
         }
         if(collapseType===1){
+            mailTouch(initPosX+posXPlus,currentVertical)
             obstacleArray[collapseIndex][currentVertical] = 0
         }
     }
@@ -131,8 +133,9 @@ export function PlayerJump(Timer){
     // // 圖片有成功讀取，才理他
     if(PlayerImgElement.complete){
         // 清除畫布
-        gameCanvas.clearRect(horizonPos,verticalUnit*currentVertical,playerWidth,playerHeight/2)
-
+        // gameCanvas.clearRect(horizonPos,verticalUnit*currentVertical,playerWidth,playerHeight/4)
+        // console.log(verticalUnit*currentVertical)
+        gameCanvas.clearRect(horizonPos,(ui_heigth/6-10)*currentVertical,playerWidth,ui_heigth/4.4)
         gameCanvas.globalAlpha = Alpha;
         // 重新繪製
         gameCanvas.drawImage(PlayerImgElement,cutActionVal,verticalUnit*currentVertical,playerPerWidth,ui_heigth,horizonPos,0,playerWidth,playerHeight)
