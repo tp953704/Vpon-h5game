@@ -29,7 +29,6 @@ const bg_height = gameBgDom.height;
 export function gameInit(){
     // 背景渲染
     bgInit(bg_width,bg_height,gameBgCanvas)
-    // drawMail(gameCanvas)
 }
 
 // 遊戲的所有資訊

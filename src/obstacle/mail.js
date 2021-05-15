@@ -43,7 +43,7 @@ export function mailTouch(x,y){
         // 動畫中心X座標
         let X=(ui_width/17)*x
         // 動畫中心Y座標 最低為mailCutHeight*y-70
-        let Y=(mailCutHeight)*y-70
+        let Y=(mailCutHeight)*y+30
         // 半徑 10~15
         let r=10
         // 半徑外延伸，特效的長度

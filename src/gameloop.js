@@ -5,9 +5,11 @@ import {gameCanvas,ui_width,ui_heigth,gameBgCanvas,bg_width,bg_height} from './i
 // 背景初始化與更新
 import {bgUpdate} from './background'
 // 玩家
-import {updatePlayer,MoveUp,MoveDown} from './player'
-
-import {drawObstacleToMap,obstacleSpeed} from './obstacle/gameMaps';
+import {updatePlayer,MoveUp,MoveDown,PlayerJump} from './player'
+// 障礙物繪製
+import {drawObstacleToMap} from './obstacle/gameMaps';
+// 遊戲分數紀錄 =>及時記分板方法
+import {gameBoardLoop,gameTeach} from './gameBoard'
 
 //  遊戲時間軸
 let currentTimer = 0; 
@@ -24,7 +26,6 @@ let pauseTimeFn = ()=>{}
 
 // 無限迴圈
 export function Looping(){
-    
     // 是否全體元素正常運作
     if(isLooping){
         // 清空畫布
@@ -39,12 +40,17 @@ export function Looping(){
         // 新圖畫在舊圖下
         gameCanvas.globalCompositeOperation = "destination-over"
           // 渲染 障礙物
-        
         drawObstacleToMap(currentTimer)
+        // 及時記分板渲染
+        gameBoardLoop()
     }else{
         // 暫停秒數更新
         pauseTimer++;
         pauseTimeFn(pauseTimer)
+    }
+    // 新手教學
+    if(currentTimer<150){
+        gameTeach()
     }
     // 持續更新觸發
     requestAnimationFrame(Looping)
@@ -58,7 +64,7 @@ export function pause(pauseFn){
 export function startLoop(){
     // 暫停秒數初始化
     pauseTimer=0;
-    pauseTimeFn=null
+    pauseTimeFn=()=>{}
     isLooping = true
 }
 

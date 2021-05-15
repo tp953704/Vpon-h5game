@@ -6,12 +6,10 @@ const stoneImgUrl = require("../assets/images/stone.png")
 const stoneImgElement = new Image(600);
 stoneImgElement.src=stoneImgUrl
 // 圖片要成功讀取後才能渲染
-stoneImgElement.decode()
-.then(() => {
-    gameCanvas.drawImage(stoneImgElement,ui_width/17*4,ui_heigth/6*4-25,ui_width/18,ui_heigth/4)
-}).catch((err)=>{
-    console.log(err)
+stoneImgElement.decode().then(()=>{
+    
 })
+
 
 export function drawStone(x,y,currentTimer){
     // 樹的寬

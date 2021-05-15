@@ -7,6 +7,9 @@ import {getObstacleStatus} from './obstacle/gameMaps'
 // 信件特效
 import {mailTouch} from './obstacle/mail'
 
+// 遊戲分數
+import {playerDieAdd,playerMailAdd} from './gameBoard'
+
 // 玩家的素材路徑
 const PlayerImgUrl = require("./assets/images/player.png")
 
@@ -39,7 +42,6 @@ PlayerImgElement.decode()
 })
 
 
-
 // 檢查是否有撞到東西或超出邊界
 function checkMove(){
     // 垂直大小限制
@@ -65,12 +67,20 @@ function collapse(posXPlus){
     // 如果不是NaN
     if(collapseIndex === collapseIndex && collapseIndex<=LastCollapseIndex){
         const collapseType = obstacleArray[collapseIndex][currentVertical]
-        // 撞到信件遊戲暫停一下，信件消失
+       
         if(collapseType>1){
+            // 播放玩家撞到動畫
             pause(PlayerJump)
+            // 玩家死亡紀錄
+            playerDieAdd()
         }
+         // 撞到信件遊戲暫停一下，信件消失
         if(collapseType===1){
+            // email碰到動畫
             mailTouch(initPosX+posXPlus,currentVertical)
+            // 玩家取得信件增加
+            playerMailAdd()
+            // 背景消失
             obstacleArray[collapseIndex][currentVertical] = 0
         }
     }
@@ -133,8 +143,6 @@ export function PlayerJump(Timer){
     // // 圖片有成功讀取，才理他
     if(PlayerImgElement.complete){
         // 清除畫布
-        // gameCanvas.clearRect(horizonPos,verticalUnit*currentVertical,playerWidth,playerHeight/4)
-        // console.log(verticalUnit*currentVertical)
         gameCanvas.clearRect(horizonPos,(ui_heigth/6-10)*currentVertical,playerWidth,ui_heigth/4.4)
         gameCanvas.globalAlpha = Alpha;
         // 重新繪製
