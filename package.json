@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/tp953704/Vpon-h5game.git"
   },
+  "gitHooks": {
+    "pre-commit": "npm run build"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -27,8 +30,5 @@
     "webpack": "^5.37.0",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
-  },
-  "gitHooks": {
-    "pre-commit": "npm run build"
   }
 }
