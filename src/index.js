@@ -4,12 +4,11 @@ import './assets/scss/app.scss'
 // 遊戲資訊初始化
 import {gameInit} from './init'
 import {Looping} from './gameloop'
-import {isMobileDevice,rotateInPhone} from './until'
+import {isMobileDevice} from './until'
 // 初始化
 window.onload = () => {
     // // 先判斷當前裝置
     if(isMobileDevice()){
-        rotateInPhone()
     }
     // 遊戲開始的按鈕
     const startBtnDom = document.querySelector("#startGameBtn")
@@ -19,9 +18,8 @@ window.onload = () => {
         beforeContainerDom.classList.add("transition-none")
         StartToPlayGame()
     },false)
-
-
-   
+    
+    
 }
 
 function StartToPlayGame(){
@@ -30,6 +28,7 @@ function StartToPlayGame(){
     // 循環觸發
     Looping()
 }
+
 
 
 

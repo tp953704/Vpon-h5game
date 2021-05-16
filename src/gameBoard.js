@@ -4,6 +4,9 @@ import {gameCanvas,ui_width,ui_heigth} from './init'
 import {drawMail} from './obstacle/mail'
 // 判斷是否行動裝置
 import {isMobileDevice} from './until'
+
+// 玩家
+import {updatePlayer} from './player'
 // 信件數
 let mailNums = 0;
 
@@ -62,4 +65,21 @@ export function gameTeach(){
         gameCanvas.fillText('鍵盤的"上下左右"',ui_width*4/6,ui_heigth/7)
     }
    
+}
+
+export function finallyDraw(){
+     // 以下設定會蓋過新圖
+     gameCanvas.globalCompositeOperation = "source-over"
+     // 字形 字大小
+     gameCanvas.font = "bold 60px Arial"
+     gameCanvas.textBaseline = "bottom"
+     // gameCanvas.textAlign = "left"
+      // 字顏色黑黑的
+    gameCanvas.fillStyle="black"
+     
+     gameCanvas.clearRect(0,0,ui_width,ui_heigth)
+     gameCanvas.fillText(`拿到信件 x${mailNums}`,ui_width*2/6,ui_heigth*3/10)
+     gameCanvas.fillText(`復活次數 x${dieNums}`,ui_width*2/6,ui_heigth*5/10)
+    // 繪製玩家
+    updatePlayer(99)
 }

@@ -1,7 +1,6 @@
 
 // 背景初始化
 import {bgInit} from './background'
-
 // 利用canvas ID 取得 DOM 和 cavans
 function getCanvasAndContextById(id){
     const dom =document.querySelector('#'+ id);
@@ -18,6 +17,7 @@ function getCanvasAndContextById(id){
 const [gameDom,gameCanvas] = getCanvasAndContextById('game-ui')
 // 背景Canvas // 遊戲背景 畫布
 const [gameBgDom,gameBgCanvas] = getCanvasAndContextById('game-bg')
+
 const ui_width = gameDom.width;
 const ui_heigth = gameDom.height;
 
@@ -33,5 +33,4 @@ export function gameInit(){
 
 // 遊戲的所有資訊
 export {gameDom,gameCanvas,ui_width,ui_heigth,gameBgDom,gameBgCanvas,bg_width,bg_height}
-
 

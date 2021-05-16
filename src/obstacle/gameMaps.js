@@ -12,7 +12,7 @@ export const obstacleSpeed = 1/30
 
 //障礙物Array 地圖
 // 1是mail 2是tree 3是stone
-const obstacleArray = [
+export const obstacleArray = [
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],
     [0,0,0,0,0,0],

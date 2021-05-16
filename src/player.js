@@ -8,7 +8,8 @@ import {getObstacleStatus} from './obstacle/gameMaps'
 import {mailTouch} from './obstacle/mail'
 
 // 遊戲分數
-import {playerDieAdd,playerMailAdd} from './gameBoard'
+import {playerDieAdd,playerMailAdd,finallyDraw} from './gameBoard'
+
 
 // 玩家的素材路徑
 const PlayerImgUrl = require("./assets/images/player.png")
@@ -161,6 +162,7 @@ export function PlayerJump(Timer){
 
 
 
+
 // 當前列哪裡是安全的
 function safePosY(){
     let [firstIndex,lastIndex,obstacleArray] = getObstacleStatus()
@@ -187,4 +189,20 @@ function safePosY(){
         return futureCol.findIndex((e)=>{e<=1})
     }
     return resultCol
+}
+// 玩家結束動作
+export function PlayerFinal(Timer){
+     // 動作部會超過17個(0~16)，馬的前腳會跳起來動作是第1個動作到8個動作(0~7)
+     const currentActionIndex = Math.floor(Timer/3)%8
+     const cutActionVal = unitVal*currentActionIndex
+     if(PlayerImgElement.complete){
+        // 清除畫布
+        gameCanvas.clearRect(horizonPos,(ui_heigth/6-10)*currentVertical,playerWidth,ui_heigth/4.4)
+        // 重新繪製
+        gameCanvas.drawImage(PlayerImgElement,cutActionVal,0,playerPerWidth,ui_heigth,horizonPos,(ui_heigth/6-10)*currentVertical,playerWidth,playerHeight)
+    }
+
+    if(Timer>50){
+        finallyDraw()
+    }
 }
