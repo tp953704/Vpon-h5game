@@ -7,7 +7,7 @@ import {Looping} from './gameloop'
 import {isMobileDevice,rotateInPhone} from './until'
 // 初始化
 window.onload = () => {
-    // 先判斷當前裝置
+    // // 先判斷當前裝置
     if(isMobileDevice()){
         rotateInPhone()
     }
@@ -20,6 +20,8 @@ window.onload = () => {
         StartToPlayGame()
     },false)
 
+
+   
 }
 
 function StartToPlayGame(){
@@ -28,6 +30,9 @@ function StartToPlayGame(){
     // 循環觸發
     Looping()
 }
+
+
+
 
 
 

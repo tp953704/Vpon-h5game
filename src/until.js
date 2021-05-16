@@ -1,42 +1,68 @@
 // 判斷是否行動裝置
 export function isMobileDevice() {
-    const mobileDevice = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone']
-    let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
-    return isMobileDevice
+    const mobileDevice = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod','macos', 'BlackBerry', 'Windows Phone']
+    
+    
+    let isMobile = mobileDevice.some(e => navigator.userAgent.match(e))
+   
+                        // // 新iPad的平台为 MacIntel，其他方法測步道
+    return isMobile || navigator.platform.match('MacIntel')
 }
 
 // 通過判斷旋轉角度來判斷是否豎屏或橫屏
 export function rotateInPhone(){
-    const width = document.documentElement.clientWidth;
-    const height = document.documentElement.clientHeight;
-    var screen_width = width; //屏幕宽度
-    if (width < height) {
-        screen_width = height; //如果 是竖屏，灵感的宽度就等于屏高
-        const contentDOM = document.querySelector('.game-wrapper');
-        contentDOM.style.width = height + 'px';
-        contentDOM.style.height = width + 'px';
-        contentDOM.style.top = (height - width) / 2 + 'px';
-        contentDOM.style.left = 0 - (height - width) / 2 + 'px';
-        contentDOM.style.transform = 'rotate(90deg)';
-    }
-    console.log(width,height)
-    //根据手机旋转的角度来判断
-    const evt = "onorientationchange" in window ? "orientationchange" : "resize"; //旋转事件
-    window.addEventListener(evt, function () { //事件监听
-        if (window.orientation === 90 || window.orientation === -90) { //旋转到 90 或 -90 度，即竖屏到横屏
-            screen_width = height; //横屏，灵感的宽度就等于屏高
-            contentDOM.style.width = height + 'px';
-            contentDOM.style.height = width + 'px';
-            contentDOM.style.top = '0px';
+    const width = document.body.clientWidth
+    const height = document.body.clientHeight
+    
+    
+    const contentDOM = document.querySelector('.game-wrapper');
+    fixWindow(width,height,contentDOM)
+    
+    //根據手機旋轉判斷
+    const evt = "onorientationchange" in window ? "orientationchange" : "resize"; //旋轉事件
+    window.addEventListener(evt, function () { //事件監聽
+        
+        let screen_width = width; //屏幕寬度
+        if (window.orientation === 90 || window.orientation === -90) { //旋轉到 90 或 -90 度
+            console.log(1,2)
+            screen_width = height; //橫坪
+            contentDOM.style.width = (height) + 'px';
+            contentDOM.style.height = height/2 + 'px';
+            contentDOM.style.top = (width-height/2)/2+'px';
             contentDOM.style.left = '0px';
-            contentDOM.style.transform = 'none'; //不旋转；
-        }else{ //旋转到 180 或 0 度，即横屏到竖屏
-            screen_width = height; //竖屏，灵感的宽度就等于屏高
-            contentDOM.style.width = height + 'px';
-            contentDOM.style.height = width + 'px';
-            contentDOM.style.top = (height - width) / 2 + 'px';
-            contentDOM.style.left = 0 - (height - width) / 2 + 'px';
-            contentDOM.style.transform = 'rotate(90deg)'; //旋转90度
+            contentDOM.style.transform = 'none'; //不旋轉；
+        }else{ 
+            //旋轉到180或0度，即橫屏到豎屏           
+            fixWindow(width,height,contentDOM)
         }
+        
     }, false);
+}
+// 重修高與寬
+function fixWindow(width,height,dom){
+    let screen_width = width; //屏幕寬度
+    
+    if (width < height && width*2>height) {
+        screen_width = height; //如果是豎屏，靈感的寬度就等於屏高
+        dom.style.width = height + 'px';
+        dom.style.height = height/2 + 'px';
+        dom.style.top = (height) / 4 + 'px';
+        dom.style.left = 0 - (height - width) / 2 + 'px';
+        dom.style.transform = 'rotate(90deg)';
+    
+    }else if(width < height && width*2 < height){
+        screen_width = height; //如果是豎屏，靈感的寬度就等於屏高
+        dom.style.width = 2*width + 'px';
+        dom.style.height = width + 'px';
+        dom.style.top = (height - width) / 2 + 'px';
+        dom.style.left = 0 - (width) / 2 + 'px';
+        dom.style.transform = 'rotate(90deg)';
+    
+    }else{
+        if(width>992){
+            dom.style.top = (height-992/2) / 2 + 'px';
+        }else{
+            dom.style.top = (height - width/2) / 2 + 'px';
+        }
+    }
 }

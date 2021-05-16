@@ -21,7 +21,7 @@ const playerHeight = ui_heigth*2.5
 // 垂直移動單位
 const verticalUnit = ui_heigth*-0.06
 // 目前的垂直移動量 範圍 0~5 初始為2
-let currentVertical = 1;
+let currentVertical = 2;
 // 水平位置(固定)
 const initPosX = 3;
 const UnitWidth = ui_width/17;
@@ -95,7 +95,7 @@ function isCollapse(posX,posY){
          return true;
      }
     //  大於1 代表不是信件
-    return obstacleArray[collapseIndex][posY]<=1
+    return obstacleArray[collapseIndex]&&obstacleArray[collapseIndex][posY]<=1
 }
 
 // 初始化後回傳之後更新的方式
@@ -111,7 +111,8 @@ export function updatePlayer(currentTimer){
         // 清除畫布
         // gameCanvas.clearRect(horizonPos,verticalUnit*currentVertical,playerWidth,playerHeight)
         // 重新繪製
-        gameCanvas.drawImage(PlayerImgElement,cutActionVal,verticalUnit*currentVertical,playerPerWidth,ui_heigth,horizonPos,0,playerWidth,playerHeight)
+        // gameCanvas.drawImage(PlayerImgElement,cutActionVal,verticalUnit*currentVertical,playerPerWidth,ui_heigth,horizonPos,0,playerWidth,playerHeight)
+        gameCanvas.drawImage(PlayerImgElement,cutActionVal,0,playerPerWidth,ui_heigth,horizonPos,(ui_heigth/6-10)*currentVertical,playerWidth,playerHeight)
     }
 }
 // 向上移動
@@ -125,6 +126,7 @@ export function MoveUp(){
 export function MoveDown(){
     // 如果移動完是障礙物 不給他移動
     if(isCollapse(initPosX+1,currentVertical+1)&&isCollapse(initPosX,currentVertical+1)){
+       
         currentVertical += 1
     }
     
@@ -146,7 +148,7 @@ export function PlayerJump(Timer){
         gameCanvas.clearRect(horizonPos,(ui_heigth/6-10)*currentVertical,playerWidth,ui_heigth/4.4)
         gameCanvas.globalAlpha = Alpha;
         // 重新繪製
-        gameCanvas.drawImage(PlayerImgElement,cutActionVal,verticalUnit*currentVertical,playerPerWidth,ui_heigth,horizonPos,0,playerWidth,playerHeight)
+        gameCanvas.drawImage(PlayerImgElement,cutActionVal,0,playerPerWidth,ui_heigth,horizonPos,(ui_heigth/6-10)*currentVertical,playerWidth,playerHeight)
     }
     // 最多跑多久
     let maxTimer = 30

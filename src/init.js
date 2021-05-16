@@ -33,3 +33,5 @@ export function gameInit(){
 
 // 遊戲的所有資訊
 export {gameDom,gameCanvas,ui_width,ui_heigth,gameBgDom,gameBgCanvas,bg_width,bg_height}
+
+
