@@ -88,7 +88,7 @@ export function finallyDraw(){
      gameCanvas.fillText(`復活次數 x${dieNums}`,ui_width*2/6,ui_heigth*5/10)
      // 字形 字大小
      gameCanvas.font = "bold 30px Arial"
-     gameCanvas.fillText("點我重玩",ui_width*2/6,ui_heigth*7/10)
+     gameCanvas.fillText("Click me and replay",ui_width*2/6,ui_heigth*7/10)
     // 繪製玩家
     updatePlayer(99)
 }
