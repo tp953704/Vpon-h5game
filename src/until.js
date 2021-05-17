@@ -16,6 +16,9 @@ export function isMobileDevice() {
 // 移動裝置按鈕DOM
 const topButtonDom = document.querySelector(".js-moveTopBtn")
 const bottomButtonDom = document.querySelector(".js-moveBottomBtn")
+
+// 整個遊戲背景
+const gameDom = document.querySelector(".js-game-touch")
 // 玩家移動監聽
 export function gameAction(){
     // 如果當前裝置是手機
@@ -29,6 +32,8 @@ export function gameAction(){
             MoveDown()
         },false)
     }else{
+        // 電腦端 滑鼠移過去變手指
+        gameDom.setAttribute("style", "cursor:pointer;");
         // 電腦端 不需要AB按鈕
         topButtonDom.remove();
         bottomButtonDom.remove();
