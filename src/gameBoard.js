@@ -68,7 +68,7 @@ export function gameTeach(){
     if(isMobileDevice()){
         gameCanvas.fillText('A鍵往上B鍵往下',ui_width*3/6,ui_heigth*2/7)
     }else{
-        gameCanvas.fillText('鍵盤的"上下左右"',ui_width*3/6,ui_heigth*2/7)
+        gameCanvas.fillText('鍵盤的"上下鍵"',ui_width*3/6,ui_heigth*2/7)
     }
    
 }
