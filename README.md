@@ -72,9 +72,12 @@
     -webpack.config.js     //開發環境配置
 ```
 
+</br>
+
+<a href="https://github.com/tp953704/Vpon-h5game/blob/main/doc/%E9%9C%80%E6%B1%82%E8%88%87%E5%8A%9F%E8%83%BD%E7%9B%A4%E9%BB%9E.md">需求與功能</a>
 
 </br>
 
-### 測試
+### 測試&&ISSUE
 
-連線至 =>  https://github.com/tp953704/Vpon-h5game/blob/main/doc/%E6%B8%AC%E8%A9%A6%E8%88%87issue.md
+<a href="https://github.com/tp953704/Vpon-h5game/blob/main/doc/%E6%B8%AC%E8%A9%A6%E8%88%87issue.md">測試連結&&ISSUE</a>
