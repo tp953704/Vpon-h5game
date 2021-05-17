@@ -1,6 +1,7 @@
 import {gameCanvas,ui_width,ui_heigth} from '../init'
 
 import {pause,startLoop} from '../gameloop'
+import {obstacleSpeed} from './gameMaps'
 // 信封的素材路徑
 const mailImgUrl = require('../assets/images/mail.png')
 
@@ -94,7 +95,7 @@ export function drawMail(x,y,currentTimer){
         // gameCanvas.drawImage(stoneImgElement,stonePosXUnit*x,stonePosYUnit*y,stoneWidth,stoneHeight)
         // 但是渲染出來的結果是背景一格一格走，所以 stonePosXUnit*x 改成 stonePosXUnit*(x-1)-stonePosXUnit*(a*obstacleSpeed)
          // 原本每30Frame才會換一次位置 ，改動每次慢慢換
-        const changeEveryFrame = currentTimer%30+1
+        const changeEveryFrame = currentTimer%(1/obstacleSpeed)+1
         // y軸的誤差值
         const yErrorVal = 25
         gameCanvas.drawImage(mailImg,unitVal*mailActionIndex,0,mailCutWidth,mailCutHeight,horizonPosUnit*(x-changeEveryFrame/30),yErrorVal+mailVerticalUnit*y,mailWidth,mailHeight)

@@ -1,7 +1,7 @@
 // 初始值
 import {gameCanvas,ui_width,ui_heigth} from './init'
 // 遊戲循環控制
-import {pause,startLoop} from './gameloop'
+import {pause,startLoop,isGameLoop} from './gameloop'
 // 取得障礙物渲染狀態
 import {getObstacleStatus} from './obstacle/gameMaps'
 // 信件特效
@@ -124,6 +124,11 @@ export function updatePlayer(currentTimer){
 }
 // 向上移動
 export function MoveUp(){
+    // 遊戲循環中，才會移動
+    // 如果當前是遊戲暫停狀態，return ;
+    if(!isGameLoop()){
+        return ;
+    }
     // 如果移動完是障礙物 不給他移動
     if(isCollapse(initPosX+1,currentVertical-1)&&isCollapse(initPosX,currentVertical-1)){
         currentVertical -= 1
@@ -131,6 +136,11 @@ export function MoveUp(){
 }
 // 向下移動
 export function MoveDown(){
+    // 遊戲循環中，才會移動
+    // 如果當前是遊戲暫停狀態，return ;
+    if(!isGameLoop()){
+        return ;
+    }
     // 如果移動完是障礙物 不給他移動
     if(isCollapse(initPosX+1,currentVertical+1)&&isCollapse(initPosX,currentVertical+1)){
        

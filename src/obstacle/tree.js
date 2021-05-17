@@ -1,6 +1,6 @@
 // 遊戲資訊初始化
 import {gameCanvas,ui_width,ui_heigth} from '../init'
-
+import {obstacleSpeed} from './gameMaps'
 const treeImgUrl = require("../assets/images/tree.png")
 
 const treeImgElement = new Image(600);
@@ -28,7 +28,7 @@ export function drawTree(x,y,currentTimer){
         // gameCanvas.drawImage(stoneImgElement,stonePosXUnit*x,stonePosYUnit*y,stoneWidth,stoneHeight)
         // 但是渲染出來的結果是背景一格一格走，所以 stonePosXUnit*x 改成 stonePosXUnit*(x-1)-stonePosXUnit*(a*obstacleSpeed)
          // 原本每30Frame才會換一次位置 ，改動每次慢慢換
-        const changeEveryFrame = currentTimer%30+1
+         const changeEveryFrame = currentTimer%(1/obstacleSpeed)+1
         gameCanvas.drawImage(treeImgElement,treePosXUnit*(x-changeEveryFrame/30),treePosYUnit*y,treeWidth,treeHeight)
     }
 }

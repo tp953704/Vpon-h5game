@@ -77,9 +77,14 @@ export function startLoop(){
     pauseTimeFn=()=>{}
     isLooping = true
 }
+// 遊戲重新開始
 export function restart(){
     currentTimer = 0;
     startLoop()
+}
+
+export function isGameLoop(){
+    return isLooping;
 }
 
 
