@@ -97,6 +97,33 @@ html,body{
             }
         }
     }
+    .game-btn{
+        position: absolute;
+        z-index: 4;
+        bottom: 4%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        height: 20%;
+        border-radius: 50%;
+        background-color: rgb(95,158,160,0.43);
+        &:active{
+            background-color: rgb(95,158,160,0.8);
+        }
+        .game-btn__text{
+            //螢幕 320 字體 20px 1200 字體 80
+            font-size: calc((100vw - 320px)/60 + 20px);
+            font-weight: bolder;
+            color: rgb(96,44,218,29%);
+        }
+    }
+    .top-btn{
+        right: 18%;
+    }
+    .bottom-btn{
+        right: 4%;
+    }
     // 慢慢消失
     .transition-none{
         opacity: 0;

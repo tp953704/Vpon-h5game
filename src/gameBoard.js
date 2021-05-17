@@ -44,9 +44,9 @@ export function gameBoardLoop(){
     // 字顏色黑黑的
     gameCanvas.fillStyle="black"
     // 將Email的圖放到需要的地方
-    drawMail(13,5.3,1)
+    drawMail(1,5.3,1)
     // 字的內容，與位置
-    gameCanvas.fillText(`x ${mailNums}`,ui_width*5/6,ui_heigth)
+    gameCanvas.fillText(`x${mailNums}`,ui_width*1/8,ui_heigth)
     
 }
 
@@ -55,20 +55,20 @@ export function gameTeach(){
     // 以下設定會蓋過新圖
     gameCanvas.globalCompositeOperation = "source-over"
     // 字形 字大小
-    gameCanvas.font = "bold 30px Arial"
+    gameCanvas.font = "bold 50px Arial"
     gameCanvas.textBaseline = "bottom"
-    // gameCanvas.textAlign = "left"
+    gameCanvas.textAlign = "left"
     // 背景顏色粉粉的
     gameCanvas.fillStyle="#f3b8c8"
-    gameCanvas.fillRect(ui_width*4/6,0,ui_width/5,ui_heigth/7)
+    gameCanvas.fillRect(ui_width*29/60,0,ui_width/3,ui_heigth/3)
      // 字顏色黑黑的
     gameCanvas.fillStyle="black"
-    gameCanvas.fillText('操空方式為',ui_width*4/6,ui_heigth/14)
+    gameCanvas.fillText('操空方式為',ui_width*3/6,ui_heigth/7)
     // 不同裝置顯示字不同
     if(isMobileDevice()){
-        gameCanvas.fillText('手勢"上滑與下滑"',ui_width*4/6,ui_heigth/7)
+        gameCanvas.fillText('A鍵往上B鍵往下',ui_width*3/6,ui_heigth*2/7)
     }else{
-        gameCanvas.fillText('鍵盤的"上下左右"',ui_width*4/6,ui_heigth/7)
+        gameCanvas.fillText('鍵盤的"上下左右"',ui_width*3/6,ui_heigth*2/7)
     }
    
 }
