@@ -60,6 +60,7 @@ export function Looping(){
     if(currentTimer>obstacleLength/obstacleSpeed){
         // 玩家最後動作
         pause(PlayerFinal)
+        // restart()
     }
     // 持續更新觸發
     requestAnimationFrame(Looping)
@@ -76,8 +77,13 @@ export function startLoop(){
     pauseTimeFn=()=>{}
     isLooping = true
 }
+export function restart(){
+    currentTimer = 0;
+    startLoop()
+}
 
 
+// 玩家遊戲中移動事件監聽綁定
 gameAction()
 
 

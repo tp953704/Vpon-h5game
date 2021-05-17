@@ -27,6 +27,11 @@ export function playerMailAdd(){
 export function gameStatus(){
     return [mailNums,dieNums]
 }
+// 遊戲分數初始化
+export function gameStatusInit(){
+    dieNums = 0;
+    mailNums = 0;
+}
 
 // 繪製及時記分板
 export function gameBoardLoop(){
@@ -59,6 +64,7 @@ export function gameTeach(){
      // 字顏色黑黑的
     gameCanvas.fillStyle="black"
     gameCanvas.fillText('操空方式為',ui_width*4/6,ui_heigth/14)
+    // 不同裝置顯示字不同
     if(isMobileDevice()){
         gameCanvas.fillText('手勢"上滑與下滑"',ui_width*4/6,ui_heigth/7)
     }else{
@@ -80,6 +86,9 @@ export function finallyDraw(){
      gameCanvas.clearRect(0,0,ui_width,ui_heigth)
      gameCanvas.fillText(`拿到信件 x${mailNums}`,ui_width*2/6,ui_heigth*3/10)
      gameCanvas.fillText(`復活次數 x${dieNums}`,ui_width*2/6,ui_heigth*5/10)
+     // 字形 字大小
+     gameCanvas.font = "bold 30px Arial"
+     gameCanvas.fillText("點我重玩",ui_width*2/6,ui_heigth*7/10)
     // 繪製玩家
     updatePlayer(99)
 }

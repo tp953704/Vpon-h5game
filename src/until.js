@@ -1,5 +1,9 @@
+// 遊戲循環控制
+import {restart} from './gameloop'
 // 玩家
 import {MoveDown,MoveUp} from './player'
+// 遊戲分數相關初始化
+import {gameStatusInit} from './gameBoard'
 
 // 判斷是否行動裝置
 export function isMobileDevice() {
@@ -9,7 +13,7 @@ export function isMobileDevice() {
     return isMobile || navigator.platform.match('MacIntel')
 }
 
-// 滑動監聽
+// 玩家移動監聽
 export function gameAction(){
     // 整個遊戲的DOM監聽
     const gameDom = document.querySelector(".js-game-touch")
@@ -65,4 +69,35 @@ export function gameAction(){
         }
     }
     
+}
+
+// 結尾時，點擊遊戲可以重玩
+// 觸發重新開始的DOM監聽
+export function restartDomAction(){
+    // 整個遊戲的DOM監聽
+    const gameDom = document.querySelector(".js-game-touch")
+    const gamereStartFn = ()=>{
+        // 遊戲分數相關初始化
+        gameStatusInit()
+        // 遊戲時間軸初始化
+        restart()
+        gameDom.removeEventListener("click",gamereStartFn,false)
+    }
+    // 點擊遊戲可以重玩
+    gameDom.addEventListener("click",gamereStartFn,false)
+}
+
+const audioDieDom = document.querySelector("#dieMedia")
+audioDieDom.pause()
+// 撞到石頭或樹時會有音效   
+export function dieMediaPlay(){
+    audioDieDom.currentTime = 0
+    audioDieDom.play()
+}
+
+const audioMailDom = document.querySelector("#mailMedia")
+// 碰到MAIL到時會有音效   
+export function mailMediaPlay(){
+    audioMailDom.currentTime = 0
+    audioMailDom.play()
 }

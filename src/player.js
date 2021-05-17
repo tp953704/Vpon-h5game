@@ -1,6 +1,6 @@
 // 初始值
 import {gameCanvas,ui_width,ui_heigth} from './init'
-// 遊戲循環
+// 遊戲循環控制
 import {pause,startLoop} from './gameloop'
 // 取得障礙物渲染狀態
 import {getObstacleStatus} from './obstacle/gameMaps'
@@ -10,6 +10,8 @@ import {mailTouch} from './obstacle/mail'
 // 遊戲分數
 import {playerDieAdd,playerMailAdd,finallyDraw} from './gameBoard'
 
+// 重玩遊戲的DOM監控
+import {restartDomAction,dieMediaPlay, mailMediaPlay} from './until'
 
 // 玩家的素材路徑
 const PlayerImgUrl = require("./assets/images/player.png")
@@ -70,6 +72,8 @@ function collapse(posXPlus){
         const collapseType = obstacleArray[collapseIndex][currentVertical]
        
         if(collapseType>1){
+            // 撞到音效
+            dieMediaPlay()
             // 播放玩家撞到動畫
             pause(PlayerJump)
             // 玩家死亡紀錄
@@ -77,6 +81,8 @@ function collapse(posXPlus){
         }
          // 撞到信件遊戲暫停一下，信件消失
         if(collapseType===1){
+            // mail碰到音效
+            mailMediaPlay()
             // email碰到動畫
             mailTouch(initPosX+posXPlus,currentVertical)
             // 玩家取得信件增加
@@ -204,5 +210,6 @@ export function PlayerFinal(Timer){
 
     if(Timer>50){
         finallyDraw()
+        restartDomAction()
     }
 }
