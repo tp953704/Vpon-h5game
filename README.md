@@ -45,18 +45,25 @@
 
     -src                   //所有開發與業務邏輯
         - assets           //靜態文檔 (包刮 image & scss)
+
         - obstacle         //障礙物相關開發
             - gameMaps.js  //整體障礙物地圖 、 整體障礙物繪製 、障礙物移動速度 、障礙物狀態
             - mail.js      //郵件繪製 、 郵件被碰到的特效
             - stone.js     //石頭的繪製
             - tree.js      //樹的繪製 
+
         - background.js    //底部 背景(天空、山、地板)繪製 
+
         - gameBoard.js     //遊戲狀態管理 (拿到信件、復活數)
+
         - player.js        //玩家狀態管理與繪製
 
         - gameloop.js      //遊戲生命週期之一 ，遊戲持續循環、時間軸管理相關方法
+
         - init.js          //遊戲生命週期之一 ，遊戲持續初始化相關方法
+
         - index.js         //入口文件
+        
         - until.js         //工具庫，裡面多為與DOM和BOM相關方法
 
 
